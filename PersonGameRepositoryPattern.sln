@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonGame.Infrastructure", "PersonGame.Infrastructure\PersonGame.Infrastructure.csproj", "{E8C0BEF2-3B8D-487E-ADE8-DF0EAD1FFB20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonGame.Infrastructure", "PersonGame.Infrastructure\PersonGame.Infrastructure.csproj", "{E8C0BEF2-3B8D-487E-ADE8-DF0EAD1FFB20}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonGame.Domain", "PersonGame.Domain\PersonGame.Domain.csproj", "{BEDAA46A-DC27-4F83-97D0-0B771EADDD81}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonGame.Application", "PersonGame.Application\PersonGame.Application.csproj", "{45347B60-3057-41D4-911E-DB29DF4E6E02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5D14650B-2213-4D50-817F-B9D013FCBC53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonGameWebApi", "PersonGameWebApi\PersonGameWebApi.csproj", "{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +23,26 @@ Global
 		{E8C0BEF2-3B8D-487E-ADE8-DF0EAD1FFB20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8C0BEF2-3B8D-487E-ADE8-DF0EAD1FFB20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8C0BEF2-3B8D-487E-ADE8-DF0EAD1FFB20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEDAA46A-DC27-4F83-97D0-0B771EADDD81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEDAA46A-DC27-4F83-97D0-0B771EADDD81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEDAA46A-DC27-4F83-97D0-0B771EADDD81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEDAA46A-DC27-4F83-97D0-0B771EADDD81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45347B60-3057-41D4-911E-DB29DF4E6E02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45347B60-3057-41D4-911E-DB29DF4E6E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45347B60-3057-41D4-911E-DB29DF4E6E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45347B60-3057-41D4-911E-DB29DF4E6E02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E8C0BEF2-3B8D-487E-ADE8-DF0EAD1FFB20} = {5D14650B-2213-4D50-817F-B9D013FCBC53}
+		{BEDAA46A-DC27-4F83-97D0-0B771EADDD81} = {5D14650B-2213-4D50-817F-B9D013FCBC53}
+		{45347B60-3057-41D4-911E-DB29DF4E6E02} = {5D14650B-2213-4D50-817F-B9D013FCBC53}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CDF53340-B4D8-464F-885D-355E6A98E644}
