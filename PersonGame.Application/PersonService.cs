@@ -20,7 +20,7 @@ namespace PersonGame.Application
 
         public List<PersonViewDto> GetAll()
         {
-            return _mapper.Map<List<PersonViewDto>>(repositoryPerson.GetAll<Person>("Game"));
+            return _mapper.Map<List<PersonViewDto>>(repositoryPerson.GetAll<Person>(c => c.Game));
         }
 
         public void Insert(CreatePersonDto model)

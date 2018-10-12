@@ -21,16 +21,17 @@ namespace PersonGame.Infrastructure.Data
             return _dbContext.Set<TEntity>().SingleOrDefault(e => e.Id == id);
         }
 
-        public IQueryable<TEntity> GetAll<TEntity>(string include = null) where TEntity : BaseEntity
+        public IQueryable<TEntity> GetAll<TEntity>(params Expression<Func<TEntity, object>>[] includeExpressions) where TEntity : BaseEntity
         {
-            if (string.IsNullOrEmpty(include))
+            var dbSet = _dbContext.Set<TEntity>();
+
+            IQueryable<TEntity> query = null;
+            foreach (var includeExpression in includeExpressions)
             {
-                return _dbContext.Set<TEntity>().AsQueryable();
+                query = dbSet.Include(includeExpression);
             }
-            else
-            {
-                return _dbContext.Set<TEntity>().Include(include).AsQueryable();
-            }
+
+            return query ?? dbSet;
         }
 
         public TEntity Add<TEntity>(TEntity entity) where TEntity : BaseEntity
