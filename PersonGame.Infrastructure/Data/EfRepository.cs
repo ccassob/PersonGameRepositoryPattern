@@ -2,10 +2,8 @@
 using PersonGame.Domain.Interface;
 using PersonGame.Domain.SharedKernel;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace PersonGame.Infrastructure.Data
 {
@@ -23,9 +21,16 @@ namespace PersonGame.Infrastructure.Data
             return _dbContext.Set<TEntity>().SingleOrDefault(e => e.Id == id);
         }
 
-        public IQueryable<TEntity> GetAll<TEntity>() where TEntity : BaseEntity
+        public IQueryable<TEntity> GetAll<TEntity>(string include = null) where TEntity : BaseEntity
         {
-            return _dbContext.Set<TEntity>().AsQueryable();
+            if (string.IsNullOrEmpty(include))
+            {
+                return _dbContext.Set<TEntity>().AsQueryable();
+            }
+            else
+            {
+                return _dbContext.Set<TEntity>().Include(include).AsQueryable();
+            }
         }
 
         public TEntity Add<TEntity>(TEntity entity) where TEntity : BaseEntity
