@@ -18,9 +18,15 @@ namespace PersonGame.Application
             repositoryPerson = personRepository;
         }
 
-        public List<PersonDto> GetAll()
+        public List<PersonViewDto> GetAll()
         {
-            return _mapper.Map<List<PersonDto>>(repositoryPerson.GetAll<Person>());
+            return _mapper.Map<List<PersonViewDto>>(repositoryPerson.GetAll<Person>());
+        }
+
+        public void Insert(CreatePersonDto model)
+        {
+            var person = _mapper.Map<Person>(model);
+            repositoryPerson.Add(person);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PersonGame.Application;
+using PersonGame.Application.DTOs;
 
 namespace PersonGameWebApi.Controllers
 {
@@ -28,28 +29,28 @@ namespace PersonGameWebApi.Controllers
         //    return View();
         //}
 
-        //// GET: Person/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: Person/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-        //// POST: Person/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+        // POST: Person/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CreatePersonDto model)
+        {
+            try
+            {
+                _personService.Insert(model);
 
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         //// GET: Person/Edit/5
         //public ActionResult Edit(int id)

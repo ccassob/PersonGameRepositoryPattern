@@ -11,7 +11,15 @@ namespace PersonGame.Application.Profiles
     {
         public AllProfile()
         {
-            CreateMap<Person, PersonDto>();
+            CreateMap<Person, PersonViewDto>();
+            CreateMap<Person, CreatePersonDto>();
+            CreateMap<PersonViewDto, Person>();
+            CreateMap<CreatePersonDto, Person>();
+
+            CreateMap<Game, GameViewDto>();
+            CreateMap<Game, CreateGameDto>();
+            CreateMap<GameViewDto, Game>();
+            CreateMap<CreateGameDto, Game>();
         }
     }
 }

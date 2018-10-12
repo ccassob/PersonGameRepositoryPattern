@@ -5,9 +5,9 @@ using System.Text;
 
 namespace PersonGame.Application
 {
-    public interface IPersonService
+    public interface IGameService
     {
-        List<PersonViewDto> GetAll();
-        void Insert(CreatePersonDto model);
+        List<GameViewDto> GetAll();
+        void Insert(CreateGameDto model);
     }
 }

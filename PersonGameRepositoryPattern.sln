@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonGame.Application", "P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5D14650B-2213-4D50-817F-B9D013FCBC53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonGameWebApi", "PersonGameWebApi\PersonGameWebApi.csproj", "{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonGameWebApi", "PersonGameWebApi\PersonGameWebApi.csproj", "{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{D6FBCEC1-8BAB-4DB6-B809-EE5AB5424BB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C7E2B60-9AEB-4C0B-BFB9-D6A7E81C8016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6FBCEC1-8BAB-4DB6-B809-EE5AB5424BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6FBCEC1-8BAB-4DB6-B809-EE5AB5424BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6FBCEC1-8BAB-4DB6-B809-EE5AB5424BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6FBCEC1-8BAB-4DB6-B809-EE5AB5424BB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
