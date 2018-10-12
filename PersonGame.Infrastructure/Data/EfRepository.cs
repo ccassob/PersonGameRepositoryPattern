@@ -22,9 +22,9 @@ namespace PersonGame.Infrastructure.Data
             return _dbContext.Set<TEntity>().SingleOrDefault(e => e.Id == id);
         }
 
-        public List<TEntity> GetAll<TEntity>() where TEntity : BaseEntity
+        public IQueryable<TEntity> GetAll<TEntity>() where TEntity : BaseEntity
         {
-            return _dbContext.Set<TEntity>().ToList();
+            return _dbContext.Set<TEntity>().AsQueryable();
         }
 
         public TEntity Add<TEntity>(TEntity entity) where TEntity : BaseEntity

@@ -1,5 +1,6 @@
 ﻿using PersonGame.Domain.SharedKernel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PersonGame.Domain.Interface
 {
@@ -7,7 +8,7 @@ namespace PersonGame.Domain.Interface
     {
         TEntity GetById<TEntity>(int id) where TEntity : BaseEntity;
 
-        List<TEntity> GetAll<TEntity>() where TEntity : BaseEntity;
+        IQueryable<TEntity> GetAll<TEntity>() where TEntity : BaseEntity;
 
         TEntity Add<TEntity>(TEntity entity) where TEntity : BaseEntity;
 
