@@ -4,6 +4,7 @@ using PersonGame.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace PersonGame.Infrastructure.Data
@@ -45,6 +46,11 @@ namespace PersonGame.Infrastructure.Data
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
             _dbContext.SaveChanges();
+        }
+
+        public IQueryable<TEntity> Get<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : BaseEntity
+        {
+            return _dbContext.Set<TEntity>().Where(predicate);
         }
     }
 }
