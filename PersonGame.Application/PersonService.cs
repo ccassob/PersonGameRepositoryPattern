@@ -25,7 +25,7 @@ namespace PersonGame.Application
 
         public void Insert(CreatePersonDto model)
         {
-            var person = _mapper.Map<Person>(model);
+            var person = new Person(model.Name, model.GameId);
             repositoryPerson.Add(person);
         }
     }

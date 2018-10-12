@@ -9,23 +9,24 @@ namespace PersonGame.Application
     public class GameService : IGameService
     {
         private readonly IMapper _mapper;
-        private readonly IRepository _gameRepository;
+        private readonly IRepository genericRepository;
 
         public GameService(IMapper mapper, IRepository gameRepository)
         {
             _mapper = mapper;
-            _gameRepository = gameRepository;
+            genericRepository = gameRepository;
         }
 
         public List<GameViewDto> GetAll()
         {
-            return _mapper.Map<List<GameViewDto>>(_gameRepository.GetAll<Game>());
+            var result = genericRepository.GetAll<Person>();
+            return _mapper.Map<List<GameViewDto>>(genericRepository.GetAll<Game>());
         }
 
         public void Insert(CreateGameDto model)
         {
-            var game = _mapper.Map<Game>(model);
-            _gameRepository.Add(game);
+            var game = new Game(model.Name, model.Genre, model.Rating);
+            genericRepository.Add(game);
         }
     }
 }
