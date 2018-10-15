@@ -33,7 +33,7 @@ namespace PersonGameWebApi.Controllers
 
         // POST: Person/Edit/5
         [HttpPut]
-        public IActionResult Edit(PersonViewDto model)
+        public IActionResult Edit(PersonDto model)
         {
             _personService.Update(model);
 

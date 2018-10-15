@@ -18,9 +18,9 @@ namespace PersonGame.Application
             _repository = repository;
         }
 
-        public List<PersonViewDto> GetAll()
+        public List<PersonDto> GetAll()
         {
-            return _mapper.Map<List<PersonViewDto>>(_repository.GetAll<Person>(c => c.Game));
+            return _mapper.Map<List<PersonDto>>(_repository.GetAll<Person>(c => c.Game));
         }
 
         public void Insert(CreatePersonDto model)
@@ -36,7 +36,7 @@ namespace PersonGame.Application
             _repository.Add(person);
         }
 
-        public void Update(PersonViewDto model)
+        public void Update(PersonDto model)
         {
             var person = _repository.GetById<Person>(model.Id);
 
@@ -54,6 +54,11 @@ namespace PersonGame.Application
         public void Delete(int id)
         {
             var person = _repository.GetById<Person>(id);
+            if (person == null)
+            {
+                throw new ArgumentNullException("No fue encontrado");
+            }
+
             _repository.Delete(person);
         }
     }

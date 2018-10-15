@@ -8,7 +8,7 @@ namespace PersonGame.Application.DTOs
         public int GameId { get; set; }
     }
 
-    public class PersonViewDto : BaseEntity
+    public class PersonDto : BaseEntity
     {
         public string Name { get; set; }
         public int GameId { get; set; }

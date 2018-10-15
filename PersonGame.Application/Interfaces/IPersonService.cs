@@ -7,9 +7,9 @@ namespace PersonGame.Application
 {
     public interface IPersonService
     {
-        List<PersonViewDto> GetAll();
+        List<PersonDto> GetAll();
         void Insert(CreatePersonDto model);
-        void Update(PersonViewDto model);
+        void Update(PersonDto model);
         void Delete(int id);
     }
 }
