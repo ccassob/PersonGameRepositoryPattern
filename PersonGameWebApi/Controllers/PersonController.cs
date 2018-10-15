@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PersonGame.Application;
 using PersonGame.Application.DTOs;
+using System.Collections.Generic;
 
 namespace PersonGameWebApi.Controllers
 {
@@ -17,36 +18,30 @@ namespace PersonGameWebApi.Controllers
 
         // GET api/person
         [HttpGet]
-        public IActionResult Index()
+        public IEnumerable<ViewPersonDto> Get()
         {
-            return Ok(_personService.GetAll());
+            return _personService.GetAll();
         }
 
         // POST: Person/Create
         [HttpPost]
-        public IActionResult Create(CreatePersonDto model)
+        public void Create([FromBody] WritePersonDto model)
         {
             _personService.Insert(model);
-
-            return Ok("Creado correctamente");
         }
 
-        // POST: Person/Edit/5
-        [HttpPut]
-        public IActionResult Edit(PersonDto model)
+        // PUT: api/Game/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] WritePersonDto model)
         {
-            _personService.Update(model);
-
-            return Ok("Actualizado correctamente");
+            _personService.Update(id, model);
         }
 
-        // POST: Person/Delete/5
-        [HttpDelete]
-        public ActionResult Delete(int id)
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
             _personService.Delete(id);
-
-            return Ok("Eliminado correctamente");
         }
     }
 }

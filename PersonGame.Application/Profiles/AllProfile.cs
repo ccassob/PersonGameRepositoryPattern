@@ -11,13 +11,13 @@ namespace PersonGame.Application.Profiles
     {
         public AllProfile()
         {
-            CreateMap<Person, PersonDto>();
-            CreateMap<Person, CreatePersonDto>();
-            CreateMap<PersonDto, Person>();
-            CreateMap<CreatePersonDto, Person>();
+            CreateMap<Person, ViewPersonDto>();
+            CreateMap<Person, WritePersonDto>();
+            CreateMap<ViewPersonDto, Person>();
+            CreateMap<WritePersonDto, Person>();
 
             CreateMap<Game, GameViewDto>();
-            CreateMap<Game, CreateGameDto>();
+            CreateMap<Game, WriteGameDto>();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PersonGame.Application.DTOs
 {
-    public class CreateGameDto
+    public class WriteGameDto
     {
         public string Name { get; set; }
 

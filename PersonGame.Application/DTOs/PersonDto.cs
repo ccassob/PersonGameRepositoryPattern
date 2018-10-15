@@ -2,13 +2,13 @@
 
 namespace PersonGame.Application.DTOs
 {
-    public class CreatePersonDto
+    public class WritePersonDto
     {
         public string Name { get; set; }
         public int GameId { get; set; }
     }
 
-    public class PersonDto : BaseEntity
+    public class ViewPersonDto : BaseEntity
     {
         public string Name { get; set; }
         public int GameId { get; set; }

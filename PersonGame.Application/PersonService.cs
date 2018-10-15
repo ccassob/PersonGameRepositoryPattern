@@ -18,12 +18,12 @@ namespace PersonGame.Application
             _repository = repository;
         }
 
-        public List<PersonDto> GetAll()
+        public List<ViewPersonDto> GetAll()
         {
-            return _mapper.Map<List<PersonDto>>(_repository.GetAll<Person>(c => c.Game));
+            return _mapper.Map<List<ViewPersonDto>>(_repository.GetAll<Person>(c => c.Game));
         }
 
-        public void Insert(CreatePersonDto model)
+        public void Insert(WritePersonDto model)
         {
             var game = _repository.GetById<Game>(model.GameId);
 
@@ -36,9 +36,9 @@ namespace PersonGame.Application
             _repository.Add(person);
         }
 
-        public void Update(PersonDto model)
+        public void Update(int id, WritePersonDto model)
         {
-            var person = _repository.GetById<Person>(model.Id);
+            var person = _repository.GetById<Person>(id);
 
             var game = _repository.GetById<Game>(model.GameId);
 
