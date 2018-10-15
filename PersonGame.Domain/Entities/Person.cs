@@ -1,6 +1,5 @@
 ﻿using PersonGame.Domain.SharedKernel;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace PersonGame.Domain
 {
@@ -16,9 +15,8 @@ namespace PersonGame.Domain
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException("You have to send a name");
 
-            if (gameId == 0)
-                throw new ArgumentNullException("You have to send a Game Id");
-
+            if (gameId < 1)
+                throw new ArgumentNullException("You have to send a gameId");
 
             Name = name;
             GameId = gameId;

@@ -18,12 +18,12 @@ namespace PersonGame.Infrastructure.Data
 
         public TEntity GetById<TEntity>(int id) where TEntity : BaseEntity
         {
-            return _dbContext.Set<TEntity>().SingleOrDefault(e => e.Id == id);
+            return _dbContext.Set<TEntity>().AsNoTracking().FirstOrDefault(c => c.Id == id);
         }
 
         public IQueryable<TEntity> GetAll<TEntity>(params Expression<Func<TEntity, object>>[] includeExpressions) where TEntity : BaseEntity
         {
-            var dbSet = _dbContext.Set<TEntity>();
+            var dbSet = _dbContext.Set<TEntity>().AsNoTracking();
 
             IQueryable<TEntity> query = null;
             foreach (var includeExpression in includeExpressions)
@@ -34,12 +34,10 @@ namespace PersonGame.Infrastructure.Data
             return query ?? dbSet;
         }
 
-        public TEntity Add<TEntity>(TEntity entity) where TEntity : BaseEntity
+        public void Add<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
             _dbContext.Set<TEntity>().Add(entity);
             _dbContext.SaveChanges();
-
-            return entity;
         }
 
         public void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity
@@ -54,9 +52,9 @@ namespace PersonGame.Infrastructure.Data
             _dbContext.SaveChanges();
         }
 
-        public IQueryable<TEntity> Get<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : BaseEntity
+        public TEntity Get<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : BaseEntity
         {
-            return _dbContext.Set<TEntity>().Where(predicate);
+            return _dbContext.Set<TEntity>().AsNoTracking().Where(predicate).FirstOrDefault();
         }
     }
 }

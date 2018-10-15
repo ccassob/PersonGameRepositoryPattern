@@ -7,7 +7,6 @@ namespace WebClient.Controllers
     public class PersonController : Controller
     {
         private IPersonService _personService;
-        private IGameService _gameService;
 
         public PersonController(IPersonService personService, IGameService gameService)
         {
@@ -34,7 +33,7 @@ namespace WebClient.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(PersonViewModel model)
         {
-            _personService.Insert(model.personDto);
+            _personService.Insert(model.PersonDto);
 
             return RedirectToAction(nameof(Index));
         }

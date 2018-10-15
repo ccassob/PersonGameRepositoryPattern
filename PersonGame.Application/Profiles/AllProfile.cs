@@ -13,6 +13,8 @@ namespace PersonGame.Application.Profiles
         {
             CreateMap<Person, PersonViewDto>();
             CreateMap<Person, CreatePersonDto>();
+            CreateMap<PersonViewDto, Person>();
+            CreateMap<CreatePersonDto, Person>();
 
             CreateMap<Game, GameViewDto>();
             CreateMap<Game, CreateGameDto>();

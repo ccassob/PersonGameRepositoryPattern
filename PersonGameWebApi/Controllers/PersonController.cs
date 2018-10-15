@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PersonGame.Application;
 using PersonGame.Application.DTOs;
 
@@ -9,7 +8,7 @@ namespace PersonGameWebApi.Controllers
     [ApiController]
     public class PersonController : Controller
     {
-        IPersonService _personService;
+        private IPersonService _personService;
 
         public PersonController(IPersonService personService)
         {
@@ -18,84 +17,36 @@ namespace PersonGameWebApi.Controllers
 
         // GET api/person
         [HttpGet]
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            return View(_personService.GetAll());
-        }
-
-        //// GET: Person/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
-        // GET: Person/Create
-        public ActionResult Create()
-        {
-            return View();
+            return Ok(_personService.GetAll());
         }
 
         // POST: Person/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CreatePersonDto model)
+        public IActionResult Create(CreatePersonDto model)
         {
-            try
-            {
-                _personService.Insert(model);
+            _personService.Insert(model);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return Ok("Creado correctamente");
         }
 
-        //// GET: Person/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        // POST: Person/Edit/5
+        [HttpPut]
+        public IActionResult Edit(PersonViewDto model)
+        {
+            _personService.Update(model);
 
-        //// POST: Person/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
+            return Ok("Actualizado correctamente");
+        }
 
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: Person/Delete/5
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            _personService.Delete(id);
 
-        //// GET: Person/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Person/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            return Ok("Eliminado correctamente");
+        }
     }
 }
