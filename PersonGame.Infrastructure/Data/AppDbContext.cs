@@ -16,11 +16,5 @@ namespace PersonGame.Infrastructure.Data
 
         public DbSet<Game> Games { get; set; }
         public DbSet<Person> Persons { get; set; }
-
-        public override int SaveChanges()
-        {
-            int result = base.SaveChanges();
-            return result;
-        }
     }
 }

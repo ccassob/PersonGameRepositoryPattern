@@ -10,7 +10,7 @@ namespace PersonGame.Domain.Interface
     {
         TEntity GetById<TEntity>(int id) where TEntity : BaseEntity;      
 
-        List<TEntity> GetAll<TEntity>() where TEntity : BaseEntity;
+        IQueryable<TEntity> GetAll<TEntity>(params Expression<Func<TEntity, object>>[] includes) where TEntity : BaseEntity;
 
         TEntity Add<TEntity>(TEntity entity) where TEntity : BaseEntity;
 

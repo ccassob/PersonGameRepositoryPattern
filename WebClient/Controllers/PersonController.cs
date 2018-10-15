@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PersonGame.Application;
-using PersonGame.Application.DTOs;
+using WebClient.Models;
 
 namespace WebClient.Controllers
 {
     public class PersonController : Controller
     {
-        IPersonService _personService;
+        private IPersonService _personService;
+        private IGameService _gameService;
 
-        public PersonController(IPersonService personService)
+        public PersonController(IPersonService personService, IGameService gameService)
         {
             _personService = personService;
         }
@@ -27,24 +24,19 @@ namespace WebClient.Controllers
         // GET: Person/Create
         public ActionResult Create()
         {
+            var personViewModel = new PersonViewModel();
+
             return View();
         }
 
         // POST: Person/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CreatePersonDto model)
+        public IActionResult Create(PersonViewModel model)
         {
-            try
-            {
-                _personService.Insert(model);
+            _personService.Insert(model.personDto);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch( Exception ex)
-            {
-                return View();
-            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

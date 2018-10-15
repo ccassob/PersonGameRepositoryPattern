@@ -38,16 +38,9 @@ namespace WebClient.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(CreateGameDto model)
         {
-            try
-            {
                 _gameService.Insert(model);
 
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: Game/Edit/5
