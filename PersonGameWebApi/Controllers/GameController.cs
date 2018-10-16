@@ -32,7 +32,7 @@ namespace PersonGameWebApi.Controllers
 
         // POST: api/Game
         [HttpPost]
-        public void Create([FromBody] WriteGameDto model)
+        public void Create([FromBody] CreateGameDto model)
         {
             _gameService.Insert(model);
         }
