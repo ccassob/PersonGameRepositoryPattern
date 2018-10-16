@@ -32,7 +32,7 @@ namespace PersonGameWebApi.Controllers
 
         // PUT: api/Game/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] UpdatePersonDto model)
+        public void Put(int id, [FromBody] ViewPersonDto model)
         {
             _personService.Update(id, model);
         }

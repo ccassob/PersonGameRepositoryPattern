@@ -8,7 +8,7 @@ namespace PersonGame.Application
     public interface IGameService
     {
         List<GameViewDto> GetAll();
-        void Insert(WriteGameDto model);
+        void Insert(CreateGameDto model);
         void Update(int id, GameViewDto model);
         void Delete(int id);
     }

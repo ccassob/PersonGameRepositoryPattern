@@ -13,10 +13,4 @@ namespace PersonGame.Application.DTOs
         public string Name { get; set; }
         public int Age { get; set; }
     }
-
-    public class UpdatePersonDto : BaseEntity<int>
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
 }

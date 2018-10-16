@@ -9,7 +9,7 @@ namespace PersonGame.Application
     {
         List<ViewPersonDto> GetAll();
         void Insert(CreatePersonDto model);
-        void Update(int id, UpdatePersonDto model);
+        void Update(int id, ViewPersonDto model);
         void Delete(int id);
     }
 }

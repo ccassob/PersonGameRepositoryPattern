@@ -13,14 +13,12 @@ namespace PersonGame.Application.Profiles
         {
             CreateMap<Person, ViewPersonDto>();
             CreateMap<Person, CreatePersonDto>();
-            CreateMap<Person, UpdatePersonDto>();
             CreateMap<ViewPersonDto, Person>();
-            CreateMap<UpdatePersonDto, Person>();
             CreateMap<CreatePersonDto, Person>()
                 .ForMember(dest => dest.Id, opt => opt.UseDestinationValue());
 
             CreateMap<Game, GameViewDto>();
-            CreateMap<Game, WriteGameDto>();
+            CreateMap<Game, CreateGameDto>();
         }
     }
 }

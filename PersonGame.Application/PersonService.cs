@@ -31,7 +31,7 @@ namespace PersonGame.Application
             _unitOfWork.Commit();
         }
 
-        public void Update(int id, UpdatePersonDto model)
+        public void Update(int id, ViewPersonDto model)
         {
             var person = _unitOfWork.PersonRepository.GetById(id);
 

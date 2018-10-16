@@ -24,7 +24,7 @@ namespace PersonGame.Application
             return _mapper.Map<List<GameViewDto>>(_unitOfWork.GameRepository.GetAll());
         }
 
-        public void Insert(WriteGameDto model)
+        public void Insert(CreateGameDto model)
         {
             var game = new Game(model.Name, model.Genre, model.Rating);
             _unitOfWork.GameRepository.Add(game);
