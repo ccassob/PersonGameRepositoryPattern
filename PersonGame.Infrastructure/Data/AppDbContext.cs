@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PersonGame.Domain;
-using PersonGame.Domain.SharedKernel;
 
 namespace PersonGame.Infrastructure.Data
 {
