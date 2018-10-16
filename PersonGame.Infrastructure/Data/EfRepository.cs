@@ -18,7 +18,7 @@ namespace PersonGame.Infrastructure.Data
 
         public TEntity GetById(int id) 
         {
-            return _dbContext.Set<TEntity>().AsNoTracking().FirstOrDefault(c => c.Id == id);
+            return _dbContext.Set<TEntity>().AsNoTracking().SingleOrDefault(c => c.Id == id);
         }
 
         public IQueryable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] includeExpressions) 
@@ -51,7 +51,7 @@ namespace PersonGame.Infrastructure.Data
 
         public TEntity Get(Expression<Func<TEntity, bool>> predicate) 
         {
-            return _dbContext.Set<TEntity>().AsNoTracking().Where(predicate).FirstOrDefault();
+            return _dbContext.Set<TEntity>().Where(predicate).AsNoTracking().FirstOrDefault();
         }
     }
 }
