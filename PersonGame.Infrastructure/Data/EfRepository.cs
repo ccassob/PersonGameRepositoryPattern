@@ -16,12 +16,12 @@ namespace PersonGame.Infrastructure.Data
             _dbContext = dbContext;
         }
 
-        public TEntity GetById<TEntity>(int id) where TEntity : BaseEntity
+        public TEntity GetById<TEntity>(int id) where TEntity : BaseEntity<int>
         {
             return _dbContext.Set<TEntity>().AsNoTracking().FirstOrDefault(c => c.Id == id);
         }
 
-        public IQueryable<TEntity> GetAll<TEntity>(params Expression<Func<TEntity, object>>[] includeExpressions) where TEntity : BaseEntity
+        public IQueryable<TEntity> GetAll<TEntity>(params Expression<Func<TEntity, object>>[] includeExpressions) where TEntity : BaseEntity<int>
         {
             var dbSet = _dbContext.Set<TEntity>().AsNoTracking();
 
@@ -34,25 +34,25 @@ namespace PersonGame.Infrastructure.Data
             return query ?? dbSet;
         }
 
-        public void Add<TEntity>(TEntity entity) where TEntity : BaseEntity
+        public void Add<TEntity>(TEntity entity) where TEntity : BaseEntity<int>
         {
             _dbContext.Set<TEntity>().Add(entity);
             _dbContext.SaveChanges();
         }
 
-        public void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity
+        public void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity<int>
         {
             _dbContext.Set<TEntity>().Remove(entity);
             _dbContext.SaveChanges();
         }
 
-        public void Update<TEntity>(TEntity entity) where TEntity : BaseEntity
+        public void Update<TEntity>(TEntity entity) where TEntity : BaseEntity<int>
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
 
-        public TEntity Get<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : BaseEntity
+        public TEntity Get<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : BaseEntity<int>
         {
             return _dbContext.Set<TEntity>().AsNoTracking().Where(predicate).FirstOrDefault();
         }

@@ -14,7 +14,7 @@ namespace PersonGame.Application.DTOs
         public decimal Rating { get; set; }
     }
 
-    public class GameViewDto : BaseEntity
+    public class GameViewDto : BaseEntity<int>
     {
         public string Name { get; set; }
 

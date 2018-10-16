@@ -25,14 +25,14 @@ namespace PersonGameWebApi.Controllers
 
         // POST: Person/Create
         [HttpPost]
-        public void Create([FromBody] WritePersonDto model)
+        public void Create([FromBody] CreatePersonDto model)
         {
             _personService.Insert(model);
         }
 
         // PUT: api/Game/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] WritePersonDto model)
+        public void Put(int id, [FromBody] UpdatePersonDto model)
         {
             _personService.Update(id, model);
         }

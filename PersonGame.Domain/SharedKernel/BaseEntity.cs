@@ -2,9 +2,9 @@
 
 namespace PersonGame.Domain.SharedKernel
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity<TPrimitive> where TPrimitive : struct
     {
         [Key]
-        public int Id { get; set; }
+        public TPrimitive Id { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System;
 
 namespace PersonGame.Domain
 {
-    public class Game : BaseEntity
+    public class Game : BaseEntity<int>
     {
         public string Name { get; set; }
 

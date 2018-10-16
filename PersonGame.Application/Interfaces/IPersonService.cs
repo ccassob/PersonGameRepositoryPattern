@@ -8,8 +8,8 @@ namespace PersonGame.Application
     public interface IPersonService
     {
         List<ViewPersonDto> GetAll();
-        void Insert(WritePersonDto model);
-        void Update(int id, WritePersonDto model);
+        void Insert(CreatePersonDto model);
+        void Update(int id, UpdatePersonDto model);
         void Delete(int id);
     }
 }

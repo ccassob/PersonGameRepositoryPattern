@@ -23,7 +23,7 @@ namespace PersonGame.Application
             return _mapper.Map<List<ViewPersonDto>>(_repository.GetAll<Person>(c => c.Game));
         }
 
-        public void Insert(WritePersonDto model)
+        public void Insert(CreatePersonDto model)
         {
             var game = _repository.GetById<Game>(model.GameId);
 
@@ -36,7 +36,7 @@ namespace PersonGame.Application
             _repository.Add(person);
         }
 
-        public void Update(int id, WritePersonDto model)
+        public void Update(int id, UpdatePersonDto model)
         {
             var person = _repository.GetById<Person>(id);
 
