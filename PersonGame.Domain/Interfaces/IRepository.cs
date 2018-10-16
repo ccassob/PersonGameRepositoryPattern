@@ -1,23 +1,22 @@
 ﻿using PersonGame.Domain.SharedKernel;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace PersonGame.Domain.Interface
 {
-    public interface IRepository 
+    public interface IRepository<TEntity> where TEntity : BaseEntity<int>
     {
-        TEntity GetById<TEntity>(int id) where TEntity : BaseEntity<int>;      
+        TEntity GetById(int id);
 
-        IQueryable<TEntity> GetAll<TEntity>(params Expression<Func<TEntity, object>>[] includes) where TEntity : BaseEntity<int>;
+        IQueryable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] includes);
 
-        void Add<TEntity>(TEntity entity) where TEntity : BaseEntity<int>;
+        void Add(TEntity entity);
 
-        void Update<TEntity>(TEntity entity) where TEntity : BaseEntity<int>;
+        void Update(TEntity entity);
 
-        void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity<int>;
+        void Delete(TEntity entity);
 
-        TEntity Get<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : BaseEntity<int>;
+        TEntity Get(Expression<Func<TEntity, bool>> predicate);
     }
 }

@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace PersonGame.Infrastructure.Data
 {
-    public class EfRepository : IRepository
+    public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity<int>
     {
         private readonly DbContext _dbContext;
 
@@ -16,12 +16,12 @@ namespace PersonGame.Infrastructure.Data
             _dbContext = dbContext;
         }
 
-        public TEntity GetById<TEntity>(int id) where TEntity : BaseEntity<int>
+        public TEntity GetById(int id) 
         {
             return _dbContext.Set<TEntity>().AsNoTracking().FirstOrDefault(c => c.Id == id);
         }
 
-        public IQueryable<TEntity> GetAll<TEntity>(params Expression<Func<TEntity, object>>[] includeExpressions) where TEntity : BaseEntity<int>
+        public IQueryable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] includeExpressions) 
         {
             var dbSet = _dbContext.Set<TEntity>().AsNoTracking();
 
@@ -34,25 +34,22 @@ namespace PersonGame.Infrastructure.Data
             return query ?? dbSet;
         }
 
-        public void Add<TEntity>(TEntity entity) where TEntity : BaseEntity<int>
+        public void Add(TEntity entity) 
         {
             _dbContext.Set<TEntity>().Add(entity);
-            _dbContext.SaveChanges();
         }
 
-        public void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity<int>
+        public void Delete(TEntity entity) 
         {
             _dbContext.Set<TEntity>().Remove(entity);
-            _dbContext.SaveChanges();
         }
 
-        public void Update<TEntity>(TEntity entity) where TEntity : BaseEntity<int>
+        public void Update(TEntity entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
-            _dbContext.SaveChanges();
         }
 
-        public TEntity Get<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : BaseEntity<int>
+        public TEntity Get(Expression<Func<TEntity, bool>> predicate) 
         {
             return _dbContext.Set<TEntity>().AsNoTracking().Where(predicate).FirstOrDefault();
         }

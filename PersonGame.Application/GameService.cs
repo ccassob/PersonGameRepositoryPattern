@@ -2,6 +2,7 @@
 using PersonGame.Application.DTOs;
 using PersonGame.Domain;
 using PersonGame.Domain.Interface;
+using PersonGame.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 
@@ -10,29 +11,28 @@ namespace PersonGame.Application
     public class GameService : IGameService
     {
         private readonly IMapper _mapper;
-        private readonly IRepository _repository;
+        private readonly UnitOfWork _unitOfWork;
 
-        public GameService(IMapper mapper, IRepository gameRepository)
+        public GameService(IMapper mapper)
         {
             _mapper = mapper;
-            _repository = gameRepository;
         }
 
         public List<GameViewDto> GetAll()
         {
-            var result = _repository.GetAll<Person>();
-            return _mapper.Map<List<GameViewDto>>(_repository.GetAll<Game>());
+            return _mapper.Map<List<GameViewDto>>(_unitOfWork.GameRepository.GetAll());
         }
 
         public void Insert(WriteGameDto model)
         {
             var game = new Game(model.Name, model.Genre, model.Rating);
-            _repository.Add(game);
+            _unitOfWork.GameRepository.Add(game);
+            _unitOfWork.Commit();
         }
 
         public void Update(int id, WriteGameDto model)
         {
-            var game = _repository.GetById<Game>(id);
+            var game = _unitOfWork.GameRepository.GetById(id);
 
             if (game == null)
             {
@@ -40,19 +40,21 @@ namespace PersonGame.Application
             }
 
             game = _mapper.Map<Game>(model);
-            _repository.Update(game);
+            _unitOfWork.GameRepository.Update(game);
+            _unitOfWork.Commit();
         }
 
 
         public void Delete(int id)
         {
-            var game = _repository.GetById<Game>(id);
+            var game = _unitOfWork.GameRepository.GetById(id);
             if (game == null)
             {
                 throw new ArgumentNullException("No fue encontrado");
             }
 
-            _repository.Delete(game);
+            _unitOfWork.GameRepository.Delete(game);
+            _unitOfWork.Commit();
         }
     }
 }

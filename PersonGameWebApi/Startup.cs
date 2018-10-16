@@ -34,7 +34,8 @@ namespace PersonGameWebApi
             var connection = @"Data Source=.;Initial Catalog=AppDatabase;Integrated Security=True;";
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
 
-            services.AddScoped<IRepository, EfRepository>();
+            //services.AddScoped<IRepository, EfRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddTransient<IPersonService, PersonService>();
             services.AddAutoMapper();
 
