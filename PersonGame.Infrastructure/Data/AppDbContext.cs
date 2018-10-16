@@ -9,16 +9,16 @@ namespace PersonGame.Infrastructure.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext()
-        {
+        //public AppDbContext()
+        //{
             
-            //var connection = @"Data Source=.;Initial Catalog=AppDatabase;Integrated Security=True;";
-            //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
+        //    //var connection = @"Data Source=.;Initial Catalog=AppDatabase;Integrated Security=True;";
+        //    //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
 
-            //var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            //optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=AppDatabase;Integrated Security=True;");
+        //    //var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+        //    //optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=AppDatabase;Integrated Security=True;");
 
-        }
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

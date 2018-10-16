@@ -11,11 +11,12 @@ namespace PersonGame.Application
     public class GameService : IGameService
     {
         private readonly IMapper _mapper;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GameService(IMapper mapper)
+        public GameService(IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public List<GameViewDto> GetAll()

@@ -4,11 +4,16 @@ using System;
 
 namespace PersonGame.Infrastructure.Data
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private AppDbContext context = new AppDbContext();
+        private AppDbContext context;
         private IRepository<Person> departmentRepository;
         private IRepository<Game> courseRepository;
+
+        public UnitOfWork(AppDbContext dbContext)
+        {
+            context = dbContext;
+        }
 
         public IRepository<Person> PersonRepository
         {
