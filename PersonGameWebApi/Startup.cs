@@ -37,6 +37,7 @@ namespace PersonGameWebApi
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddTransient<IPersonService, PersonService>();
+            services.AddTransient<IGameService, GameService>();
             services.AddAutoMapper();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

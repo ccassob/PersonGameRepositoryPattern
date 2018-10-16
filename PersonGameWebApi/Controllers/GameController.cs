@@ -9,18 +9,18 @@ namespace PersonGameWebApi.Controllers
     [ApiController]
     public class GameController : ControllerBase
     {
-        private IGameService _service;
+        private IGameService _gameService;
 
         public GameController(IGameService services)
         {
-            _service = services;
+            _gameService = services;
         }
 
         // GET: api/Game
         [HttpGet]
         public IEnumerable<GameViewDto> Get()
         {
-            return _service.GetAll();
+            return _gameService.GetAll();
         }
 
         // GET: api/Game/5
@@ -34,21 +34,21 @@ namespace PersonGameWebApi.Controllers
         [HttpPost]
         public void Create([FromBody] WriteGameDto model)
         {
-            _service.Insert(model);
+            _gameService.Insert(model);
         }
 
         // PUT: api/Game/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] WriteGameDto model)
+        public void Put(int id, [FromBody] GameViewDto model)
         {
-            _service.Update(id, model);
+            _gameService.Update(id, model);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _service.Delete(id);
+            _gameService.Delete(id);
         }
     }
 }
