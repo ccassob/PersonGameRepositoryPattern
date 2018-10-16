@@ -21,19 +21,12 @@ namespace PersonGame.Application
 
         public List<ViewPersonDto> GetAll()
         {
-            return _mapper.Map<List<ViewPersonDto>>(_unitOfWork.PersonRepository.GetAll(c => c.Game));
+            return _mapper.Map<List<ViewPersonDto>>(_unitOfWork.PersonRepository.GetAll());
         }
 
         public void Insert(CreatePersonDto model)
         {
-            var game = _unitOfWork.PersonRepository.GetById(model.GameId);
-
-            if (game == null)
-            {
-                throw new Exception("El juego no existe");
-            }
-
-            var person = new Person(model.Name, model.GameId);
+            var person = new Person(model.Name, model.Age);
             _unitOfWork.PersonRepository.Add(person);
             _unitOfWork.Commit();
         }
@@ -42,7 +35,7 @@ namespace PersonGame.Application
         {
             var person = _unitOfWork.PersonRepository.GetById(id);
 
-            var game = _unitOfWork.GameRepository.GetById(model.GameId);
+            var game = _unitOfWork.GameRepository.GetById(model.Age);
 
             if (game == null)
             {

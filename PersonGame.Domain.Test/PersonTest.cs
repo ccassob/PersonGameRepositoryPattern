@@ -11,7 +11,7 @@ namespace PersonGame.Domain.Test
             var sale = new Person("Juanito Alimaña", 1);
 
             Assert.Equal("Juanito Alimaña", sale.Name);
-            Assert.Equal(1, sale.GameId);
+            Assert.Equal(1, sale.Age);
         }
 
         [Fact]

@@ -6,16 +6,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonGame.Infrastructure.Data;
 
-namespace PersonGame.Infrastructure.Migrations
+namespace PersonGame.Infrastructure.Migrations.AppGameDb
 {
-    [DbContext(typeof(AppDbContext))]
-    [Migration("20181012152142_Initial")]
-    partial class Initial
+    [DbContext(typeof(AppGameDbContext))]
+    [Migration("20181016181806_InitialCreateGame")]
+    partial class InitialCreateGame
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("game")
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -35,31 +36,6 @@ namespace PersonGame.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Games");
-                });
-
-            modelBuilder.Entity("PersonGame.Domain.Person", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("GameId");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("Persons");
-                });
-
-            modelBuilder.Entity("PersonGame.Domain.Person", b =>
-                {
-                    b.HasOne("PersonGame.Domain.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

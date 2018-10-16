@@ -6,13 +6,15 @@ namespace PersonGame.Infrastructure.Data
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private AppDbContext context;
+        private AppPersonDbContext personDbContext;
+        private AppGameDbContext gameDbContext;
         private IRepository<Person> personRepository;
         private IRepository<Game> gameRepository;
 
-        public UnitOfWork(AppDbContext dbContext)
+        public UnitOfWork(AppPersonDbContext dbContext1, AppGameDbContext dbContext2)
         {
-            context = dbContext;
+            personDbContext = dbContext1;
+            gameDbContext = dbContext2;
         }
 
         public IRepository<Person> PersonRepository
@@ -21,7 +23,7 @@ namespace PersonGame.Infrastructure.Data
             {
                 if (personRepository == null)
                 {
-                    personRepository = new EfRepository<Person>(context);
+                    personRepository = new EfRepository<Person>(personDbContext);
                 }
                 return personRepository;
             }
@@ -33,7 +35,7 @@ namespace PersonGame.Infrastructure.Data
             {
                 if (gameRepository == null)
                 {
-                    gameRepository = new EfRepository<Game>(context);
+                    gameRepository = new EfRepository<Game>(gameDbContext);
                 }
                 return gameRepository;
             }
@@ -41,7 +43,8 @@ namespace PersonGame.Infrastructure.Data
 
         public void Commit()
         {
-            context.SaveChanges();
+            gameDbContext.SaveChanges();
+            personDbContext.SaveChanges();
         }
 
         private bool disposed = false;
@@ -52,7 +55,8 @@ namespace PersonGame.Infrastructure.Data
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    personDbContext.Dispose();
+                    gameDbContext.Dispose();
                 }
             }
             this.disposed = true;

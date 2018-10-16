@@ -6,20 +6,19 @@ namespace PersonGame.Domain
     public class Person : BaseEntity<int>
     {
         public string Name { get; set; }
-        public Game Game { get; set; }
 
-        public int GameId { get; set; }
+        public int Age { get; set; }
 
-        public Person(string name, int gameId)
+        public Person(string name, int age)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException("You have to send a name");
 
-            if (gameId < 1)
+            if (age < 1)
                 throw new ArgumentNullException("You have to send a gameId");
 
             Name = name;
-            GameId = gameId;
+            Age = age;
         }
     }
 }

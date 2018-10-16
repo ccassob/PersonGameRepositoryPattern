@@ -11,7 +11,7 @@ namespace PersonGame.Infrastructure.Data
     {
         private readonly DbContext _dbContext;
 
-        public EfRepository(AppDbContext dbContext)
+        public EfRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
