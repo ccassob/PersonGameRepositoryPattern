@@ -7,8 +7,8 @@ namespace PersonGame.Infrastructure.Data
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
         private AppDbContext context;
-        private IRepository<Person> departmentRepository;
-        private IRepository<Game> courseRepository;
+        private IRepository<Person> personRepository;
+        private IRepository<Game> gameRepository;
 
         public UnitOfWork(AppDbContext dbContext)
         {
@@ -19,11 +19,11 @@ namespace PersonGame.Infrastructure.Data
         {
             get
             {
-                if (this.departmentRepository == null)
+                if (personRepository == null)
                 {
-                    this.departmentRepository = new EfRepository<Person>(context);
+                    personRepository = new EfRepository<Person>(context);
                 }
-                return departmentRepository;
+                return personRepository;
             }
         }
 
@@ -31,11 +31,11 @@ namespace PersonGame.Infrastructure.Data
         {
             get
             {
-                if (this.courseRepository == null)
+                if (gameRepository == null)
                 {
-                    this.courseRepository = new EfRepository<Game>(context);
+                    gameRepository = new EfRepository<Game>(context);
                 }
-                return courseRepository;
+                return gameRepository;
             }
         }
 
