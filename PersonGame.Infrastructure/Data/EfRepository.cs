@@ -9,21 +9,23 @@ namespace PersonGame.Infrastructure.Data
 {
     public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity<int>
     {
-        private readonly DbContext _dbContext;
+        protected readonly DbContext _dbContext;
+        protected readonly DbSet<TEntity> _entity;
 
         public EfRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
+            _entity = _dbContext.Set<TEntity>();            
         }
 
         public TEntity GetById(int id) 
         {
-            return _dbContext.Set<TEntity>().AsNoTracking().SingleOrDefault(c => c.Id == id);
+            return _entity.AsNoTracking().SingleOrDefault(c => c.Id == id);
         }
 
         public IQueryable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] includeExpressions) 
         {
-            var dbSet = _dbContext.Set<TEntity>().AsNoTracking();
+            var dbSet = _entity.AsNoTracking();
 
             IQueryable<TEntity> query = null;
             foreach (var includeExpression in includeExpressions)
@@ -36,12 +38,12 @@ namespace PersonGame.Infrastructure.Data
 
         public void Add(TEntity entity) 
         {
-            _dbContext.Set<TEntity>().Add(entity);
+            _entity.Add(entity);
         }
 
         public void Delete(TEntity entity) 
         {
-            _dbContext.Set<TEntity>().Remove(entity);
+            _entity.Remove(entity);
         }
 
         public void Update(TEntity entity)
@@ -51,7 +53,9 @@ namespace PersonGame.Infrastructure.Data
 
         public TEntity Get(Expression<Func<TEntity, bool>> predicate) 
         {
-            return _dbContext.Set<TEntity>().Where(predicate).AsNoTracking().FirstOrDefault();
+            return _entity.Where(predicate)
+                .AsNoTracking()
+                .FirstOrDefault();
         }
     }
 }
